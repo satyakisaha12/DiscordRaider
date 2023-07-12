@@ -2,6 +2,10 @@
   _R3CI_ Discord raider
 </h1>
 
+<h1 align="center">
+  Project not continued untill i get linux arch eta: 5-7 days
+</h1>
+
 <div align="center">
      <img  src="https://media.discordapp.net/attachments/1118198018362064926/1122835735209328660/attachment.gif ">
 </div>
