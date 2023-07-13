@@ -3,7 +3,7 @@
 </h1>
 
 <div align="center">
-     <img  src="https://media.discordapp.net/attachments/1118198018362064926/1122835735209328660/attachment.gif ">
+     <img  src="https://tenor.com/view/monkey-gif-21446496">
 </div>
 
 ## Features
