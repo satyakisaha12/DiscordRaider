@@ -45,6 +45,6 @@ make a folder called "data" and a .txt file in it called "tokens" ITS CASE SENSI
 
 # To do
 
-Fix the console closing after a a compleated action
-Fix joiner and dm spammer
-Do better visuals
+- Fix the console closing after a a compleated action
+- Fix joiner and dm spammer
+- Do better visuals
