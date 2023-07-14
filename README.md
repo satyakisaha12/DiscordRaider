@@ -26,7 +26,14 @@
 ```
 
 ```
-3. Open it 
+3. Make a folder called "Mooner"
 ```
 
-# For the time being just use it in vs i dont fucking know why im getting a error i tried all the solutions
+```
+4. Add the mooner.exe to the Mooner folder
+```
+
+```
+5. VERY IMPORTANT!!!
+make a folder called "data" and a .txt file in it called "tokens" ITS CASE SENSITIVE READ CAREFOULY!!!
+```
