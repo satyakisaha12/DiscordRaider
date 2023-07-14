@@ -1,38 +1,49 @@
 import requests
 import time
 import threading
+import json
+import shutil
 
 # File path to the tokens
-
 file_path = "data/tokens.txt"
 
 # Counting tokens
-
 def count_lines(file_path):
     with open(file_path, 'r') as file:
         line_count = 0
-        for _ in file: 
+        for _ in file:
             line_count += 1
     return line_count
 
-print('''
+# Print mooner logo
+moon_logo = '''
   __  __                             
  |  \/  | ___   ___  _ __   ___ _ __ 
  | |\/| |/ _ \ / _ \| '_ \ / _ \ '__|
  | |  | | (_) | (_) | | | |  __/ |   
  |_|  |_|\___/ \___/|_| |_|\___|_|   
+                                     
+Made by _r3ci_  youtube.com/@_R3CI dsc.gg/r3ci
+'''
 
-U have currently loaded {0} tokens
+# Token count print
+token_count_text = "U have currently loaded {0} tokens".format(count_lines(file_path))
 
-///TEST VERSION\\\                                                                                                                   
-'''.format(count_lines(file_path)))
-
-print('''
+# Options print
+options = '''
 1. Joiner IN WORK
 2. Leaver
 3. Spammer
 4. DM Spammer IN WORK
-''')
+5. Webhook spammer
+'''
+
+# Middle text shit
+terminal_width = shutil.get_terminal_size().columns
+padding = (terminal_width - len(moon_logo.split('\n')[1])) // 2
+print("\n".join(" " * padding + line for line in moon_logo.split('\n')))
+print(" " * padding + token_count_text)
+print("\n".join(" " * padding + line for line in options.split('\n')))
 
 choice = int(input("Type the number of the option you want: "))
 
@@ -181,3 +192,18 @@ if choice == 4:
 
     for thread in threads:
         thread.join()
+if choice == 5:
+    Webhook = input("Webhook: ")
+    repeat_count = int(input("Repeat (how many times): "))
+    message_content = input("Message: ")
+
+    payload = {
+        "content": message_content
+    }
+    for i in range(repeat_count):
+        response = requests.post(Webhook, json=payload)
+
+    if response.status_code == 204:
+        print("Message sent successfully!")
+    else:
+        print("Failed to send the message. Status code: ", response.status_code)
