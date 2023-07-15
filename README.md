@@ -12,9 +12,9 @@
 
 ## Features
 - Main features
-  - Spammer
   - Joiner
   - Leaver
+  - Spammer
   - Dm spammer
   - Webhook spammer
  
