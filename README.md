@@ -22,21 +22,13 @@
   
 # Installation
 
-```
 1. Download Python
-```
 
-```
 2. Download the latest release
-```
 
-```
 3. Make a folder for Mooner (it will make a folder and a file)
-```
 
-```
 4. Add the mooner.exe to the Mooner folder
-```
 
 # To do
 
