@@ -13,16 +13,22 @@
      <img  src="https://media.tenor.com/-LlG5WSoK74AAAAj/monkey.gif">
 </div>
 
-## Features
-- Main features
-  - Joiner
-  - Leaver
-  - Spammer
-  - Reactor
-  - Webhook spammer
- 
-<hr  style="border-radius: 2%; margin-top: 60px; margin-bottom: 60px;"  noshade=""  size="20"  width="100%">
+# Features
+- Joiner
+- Leaver
+- Spammer
+- Reactor
+- Webhook spammer
+- Is typing...
+- Checker
+
+# Usage
+- Put ur tokens in data/tokens.txt the code will auto generate this path
+- Put webhooks u want to spam in data/webhooks.txt it also auto generates this path
+- Open the .exe
+- And ur redy to go
   
+
 # Installation
 
 1. Download Python
@@ -32,6 +38,8 @@
 3. Make a folder for Mooner (it will make a folder and a file)
 
 4. Add the mooner.exe to the Mooner folder
+
+# Any issues? join the discord and dm me!
 
 # To do
 
