@@ -1,12 +1,5 @@
 <h1 align="center">
-  IMPORTANT DONT USE JOINER UNTIL I MAKE A BYPASS
-</h1>
-<h1 align="center">
-  Feel free to copy the code and use it in yours project 
-</h1>
-
-<h1 align="center">
-  _R3CI_ Discord raider
+  Mooner
 </h1>
 
 <div align="center">
