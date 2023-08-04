@@ -1,13 +1,16 @@
 <h1 align="center">
   Mooner
 </h1>
+<h1 align="center">
+  Project was ended on 04/08/2023 works for the v9 api 
+</h1>
 
 <div align="center">
      <img  src="https://media.tenor.com/-LlG5WSoK74AAAAj/monkey.gif">
 </div>
 
 # Features
-- Joiner
+- Joiner (not working)
 - Leaver
 - Spammer
 - Reactor
