@@ -20,10 +20,10 @@
 - Token locker
 
 # Usage
-1. Put start.bat, fix.bat and Mooner.py in its owner foler
-2. run start.bat if it wont work run fix.bat
-3. then run start.bat again
-4. run it and it will create data/tokens,webhooks
+1. Put setup.bat and Mooner.py in its owner foler
+2. Run the setup.bat
+3. i frogot
+4. run it and it will create data/tokens,webhooks and logs
 5. Put ur tokens in data/tokens.txt the code will auto generate this path
 6. Put webhooks u want to spam in data/webhooks.txt it also auto generates this path
 7. And ur redy to go
