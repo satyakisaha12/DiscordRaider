@@ -4,33 +4,14 @@ import threading
 import os
 import colorama
 import webbrowser
-import ctypes
 import logging
+import random
+import websocket
+import json
+import tls_client
+import base64
 from pystyle import Write, Colors
 from colorama import Fore
-
-# VARIABLES
-discord = "https://discord.com/invite/auaX4vqZra"
-youtube = "https://www.youtube.com/@_R3CI_"
-discord_acc = "_r3ci_"
-file_path_tokens = "data/tokens.txt"
-file_path_webhooks = "data/webhooks.txt"
-file_path_logs = "data/logs.txt"
-
-
-#Logging
-log_file_path = "data/logs.txt"
-
-logging.basicConfig(
-    filename=log_file_path,
-    level=logging.INFO,
-    format="[%(asctime)s] %(levelname)s: %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
-)
-
-logging.info("")
-logging.info("----------------------------------------NEW SESSION----------------------------------------")
-logging.info("")
 
 # Colours
 purple_light = colorama.Fore.LIGHTMAGENTA_EX
@@ -68,46 +49,54 @@ response = session.get('https://discord.com/api/v9/experiments', headers=headers
 if response.status_code == 200:
     data = response.json()
     fingerprint = data["fingerprint"]
-    logging.info("got fingerprint")
 else:
     finger_fail = True
-    logging.info("failed to get fingerprint")
 
 # Making data folder
 if not os.path.exists("data"):
     os.makedirs("data")
-    logging.info("made data folder")
 
 # Making tokens.txt
 file_path = os.path.join("data", "tokens.txt")
 if not os.path.exists(file_path):
-    logging.info("made tokens.txt")
     with open(file_path, 'w'):
         pass
 
 # Making webhooks.txt
 file_pathWB = os.path.join("data", "webhooks.txt")
 if not os.path.exists(file_pathWB):
-    logging.info("made webhooks.txt")
     with open(file_pathWB, 'w'):
         pass
 
 # Making logs.txt
 file_path_logs = os.path.join("data", "logs.txt")
 if not os.path.exists(file_path_logs):
-    logging.info("made logs.txt")
     with open(file_path_logs, 'w'):
         pass
 
+# VARIABLES
+discord = "https://discord.com/invite/auaX4vqZra"
+youtube = "https://www.youtube.com/@_R3CI_"
+discord_acc = "_r3ci_"
+file_path_tokens = "data/tokens.txt"
+file_path_webhooks = "data/webhooks.txt"
+file_path_logs = "data/logs.txt"
+
+#Logging
+log_file_path = "data/logs.txt"
+
+logging.basicConfig(
+    filename=log_file_path,
+    level=logging.INFO,
+    format="[%(asctime)s] %(levelname)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
 # auto token checker for cmd tiltle
 def main_program():
-    while True:
-        
-        def set_cmd_title(token_count):
-            ctypes.windll.kernel32.SetConsoleTitleA(f'Mooner 🌙 | Tokens {token_count} | Discord dsc.gg/R3CI | Discord dsc.gg/R3CI')
-            
+    while True:            
         # Cleaning ocnsole
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('cls')
         logging.info("console was cleared")
         
         # Counting tokens
@@ -117,6 +106,7 @@ def main_program():
                 for _ in file:
                     line_count += 1
             return line_count
+        
         # Print mooner logo with gradient effect
         Write.Print("""
                                         ███╗   ███╗ ██████╗  ██████╗ ███╗   ██╗███████╗██████╗ 
@@ -130,8 +120,6 @@ def main_program():
         
         # token count shit i dont know 
         token_count = "{0}".format(count_lines(file_path))
-        set_cmd_title(token_count)
-
         
         # Options text with gradient effect
         Write.Print("""
@@ -176,7 +164,7 @@ def main_program():
             else:
                 print ("no such option")
                 logging.info("put in a option that doesnt exist (socials)")
-
+            
         # Joiner
         if choice == 1:
             logging.info("chose joiner (1)")
@@ -185,15 +173,41 @@ def main_program():
 
             invite = Write.Input(f"Invite: ", Colors.blue_to_purple, interval=0.000)
             logging.info("put in invite (joiner)")
+            for token in tokens:
+                def __init__(self, token) -> None:
+                    self.session = tls_client.Session(client_identifier='chrome_108')
+                ws = websocket.WebSocket()
+                ws.connect("wss://gateway.discord.gg/?v=9&encoding=json"); ws.send(json.dumps({"op": 2,"d": {"token": token, "properties": {"$os": "windows","$browser": "Discord","$device": "desktop"},"presence": {"status": random.choice(["online", "dnd", "idle"]),"since": 0,"activities": [],"afk": False}}}))
+                try:
+                    recv = json.loads(ws.recv())
+                    session = recv["d"]["session_id"]
+                    break
+                except:
+                    pass
+            
+            def joiner(token, session):
+                headers = {'accept':  '*/*'}
+                headers = {'accept-language': 'pl-PL, pl;q=0.9'}
+                headers = {'cache-control': 'no-cache'}
+                headers = {'authorization': token}
+                headers = {'content-type': 'application/json'}
+                headers = {'origin': 'https://discord.com'}
+                headers = {'cookie': '__dcfduid=676e06b0565b11ed90f9d90136e0396b; __sdcfduid=676e06b1565b11ed90f9d90136e0396bc28dfd451bebab0345b0999e942886d8dfd7b90f193729042dd3b62e2b13812f; __cfruid=1cefec7e9c504b453c3f7111ebc4940c5a92dd08-1666918609; locale=en-US'}
+                headers = {'pragma': 'no-cache'}
+                headers = {'referer': 'https://discord.com/channels/@me'}  
+                headers = {'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"'}
+                headers = {'sec-ch-ua-mobile': '?0'}
+                headers = {'sec-ch-ua-platform': '"Windows"'}
+                headers = {'sec-fetch-dest': 'empty'}
+                headers = {'sec-fetch-mode': 'cors'}
+                headers = {'x-super-properties': 'eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyLUZSIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEwNy4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTA3LjAuMC4wIiwib3NfdmVyc2lvbiI6IjEwIiwicmVmZXJyZXIiOiIiLCJyZWZlcnJpbmdfZG9tYWluIjoiIiwicmVmZXJyZXJfY3VycmVudCI6IiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6IiIsInJlcGVhc2VfY2hhbm5lcCI6InN0YWJsZSIsImNsaWVudF9idWlsZF9udW1iZXIiOjE1NDc1MCwiY2xpZW50X2V2ZW50X3NvdXJjZSI6bnVsbH0='}
+                headers = { 'x-debug-options': 'bugReporterEnabled'}
+                headers = {'sec-fetch-site': 'same-origin'}
+                headers = {'x-discord-locale': 'en-US'}
+                headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}
+                payload = {'session_id': session}
 
-            def joiner(token):
-                header = {
-                    "authorization": tokens,
-                }              
-                payload = {'session_id': "SESSION_ID"}
-                url = f"https://discord.com/api/v9/invites/{invite}"
-
-                response = requests.post(url, json=payload, headers=header)
+                response = requests.post(f"https://discord.com/api/v9/invites/{invite}", json=payload, headers=headers)
 
                 if response.status_code == 200:
                     print(Succes, purple_light + token[:-5] + "*****", yellow, response)
