@@ -8,7 +8,6 @@ import logging
 import random
 import websocket
 import json
-import tls_client
 import base64
 from pystyle import Write, Colors
 from colorama import Fore
@@ -173,17 +172,6 @@ def main_program():
 
             invite = Write.Input(f"Invite: ", Colors.blue_to_purple, interval=0.000)
             logging.info("put in invite (joiner)")
-            for token in tokens:
-                def __init__(self, token) -> None:
-                    self.session = tls_client.Session(client_identifier='chrome_108')
-                ws = websocket.WebSocket()
-                ws.connect("wss://gateway.discord.gg/?v=9&encoding=json"); ws.send(json.dumps({"op": 2,"d": {"token": token, "properties": {"$os": "windows","$browser": "Discord","$device": "desktop"},"presence": {"status": random.choice(["online", "dnd", "idle"]),"since": 0,"activities": [],"afk": False}}}))
-                try:
-                    recv = json.loads(ws.recv())
-                    session = recv["d"]["session_id"]
-                    break
-                except:
-                    pass
             
             def joiner(token, session):
                 headers = {'accept':  '*/*'}
