@@ -24,7 +24,9 @@ pip install logging
 cls
 pip install pystyle
 cls
-pip install websocket
+pip install tls-client
+cls
+pip install dtypes
 cls
 
 echo If you still have problems, DM me on Discord -^> _r3ci_
