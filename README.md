@@ -10,7 +10,7 @@
 </div>
 
 # Features
-- Joiner (not working)
+- Joiner
 - Leaver
 - Spammer
 - Reactor
