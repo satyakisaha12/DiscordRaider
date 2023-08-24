@@ -197,10 +197,10 @@ def main_program():
                     })
 
                     if result.status_code == 200:
-                       Write.Print(f'Joined server: {result.status_code}\n', Colors.blue_to_purple, interval=0.000)
+                       Write.Print(f'Joined\n', Colors.blue_to_purple, interval=0.000)
 
                     else:
-                        Write.Print(f'Error: {result.status_code\n}', Colors.blue_to_purple, interval=0.000)
+                        Write.Print('Something went wrong\n', Colors.blue_to_purple, interval=0.000)
 
             class logger:
                 colors_table = dtypes.OtherInfo.colortable
