@@ -200,7 +200,7 @@ def main_program():
                        Write.Print(f'Joined\n', Colors.blue_to_purple, interval=0.000)
 
                     else:
-                        Write.Print('Something went wrong\n', Colors.blue_to_purple, interval=0.000)
+                        Write.Print('Something went wrong captcha?\n', Colors.blue_to_purple, interval=0.000)
 
             class logger:
                 colors_table = dtypes.OtherInfo.colortable
