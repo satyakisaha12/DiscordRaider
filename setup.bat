@@ -29,14 +29,13 @@ cls
 pip install dtypes
 cls
 
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
-echo If you still have problems, DM me on Discord -^> _r3ci_
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+echo If u arent retarded u will fix it if u have issues if u dont know learn and then go to python github
+
 pause
